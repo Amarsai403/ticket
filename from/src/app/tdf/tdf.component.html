@@ -1,0 +1,83 @@
+
+<div class="jumbotron" style="background: #0c1015">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                
+                <form name="form" #registration="ngForm" (ngSubmit)="submitform(registration)">
+                  <div class="row">
+                    <div class="form-group col-md-6 has-error" >
+                        <label for="firstName" class="control-label">First Name</label>
+                        <input type="text" class="form-control" name="firstName" minlength="3" maxlength="12" [(ngModel)]="model.firstName" #firstName="ngModel" placeholder="firstName" required/>
+                        <span class="help-block" *ngIf="firstName.invalid && firstName.touched">
+                            firstName is required
+                        </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">lastName</label>
+                        <input type="text" class="form-control" name="lastName" minlength="3" maxlength="15" [(ngModel)]="model.lastName" #lastName="ngModel" placeholder="lastName" required />
+                        <span class="help-block" *ngIf="lastName.invalid && lastName.touched">
+                            lastName is required
+                      </span>
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">email</label>
+                        <input type="text" class="form-control" name="email" pattern='(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))' [(ngModel)]="model.email" #email="ngModel" placeholder="email" required />
+                        <span class="help-block" *ngIf="email.invalid && email.touched">
+                            email is required
+                      </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="state">state</label>
+                        <input type="text" class="form-control" name="state" [(ngModel)]="model.state" #state="ngModel" placeholder="state"  required/>
+                        <span class="help-block" *ngIf="state.invalid && state.touched">
+                            state is required
+                      </span>
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label for="city">city</label>
+                        <input type="text" class="form-control" name="city" [(ngModel)]="model.city" #city="ngModel" placeholder="city" required />
+                        <span class="help-block" *ngIf="city.invalid && city.touched">
+                            city is required
+                      </span>
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label for="pincode">pincode</label>
+                        <input type="text" class="form-control" name="pincode"  [(ngModel)]="model.pincode" #pincode="ngModel" placeholder="pincode" required />
+                        <span class="help-block" *ngIf="pincode.invalid && pincode.touched">
+                            pincode is required
+                      </span>
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label for="password">password</label>
+                        <input type="password" class="form-control" name="password" [(ngModel)]="model.password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" #password="ngModel" placeholder=" password" required />
+                        <span class="help-block" *ngIf="password.invalid && password.touched ">
+                            1)password length should 8 characters
+                            2) Minmum and atleat one number or symbol is required
+                      </span>
+                      </div>
+                    <div class="form-group col-md-6">
+                        <label for="cpassword">cpassword</label>
+                       <input type="password" appconfirmvalidation="password" class="form-control" name="cpassword"  [(ngModel)]="model.cpassword" #cpassword="ngModel" placeholder="conform password"required />
+                   
+                    <span class="help-block" *ngIf="cpassword.invalid && cpassword.touched && cpassword.errors?.required">
+                          conform password is required
+                    </span>
+                    <span class="help-block" *ngIf="cpassword.invalid && cpassword.touched && cpassword.errors?.notEqual && !cpassword.errors?.required">
+                        password and conform password does not match
+                    </span> 
+
+                      </div>
+                   
+                  
+                   </div>
+                   <div class="form-group offset-md-5">
+                      <button [disabled]='!registration.valid' (click)="submitform()" class="btn btn-primary">Register</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
